@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Homework2
@@ -10,6 +11,7 @@ namespace Homework2
         public int _balance;
         public DateTime _dateTime;
         public List<string> History = new List<string>();
+        List<Account> array = new List<Account>();
         public int AccountID
         {
             get
@@ -97,6 +99,10 @@ namespace Homework2
                 }
             }
 
+        }
+        public void AccountIDCheck(List<Account> accounts,int n)
+        {
+            accounts.CopyTo(array);
         }
     }
 }
