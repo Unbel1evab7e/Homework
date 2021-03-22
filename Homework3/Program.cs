@@ -8,7 +8,7 @@ namespace Homework3
         {
             string str1 = "HelloWorld!";
             Console.WriteLine(str1);
-            string obama;
+
         }
     }
 }
