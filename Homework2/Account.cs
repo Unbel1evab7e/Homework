@@ -100,9 +100,20 @@ namespace Homework2
             }
 
         }
-        public void AccountIDCheck(List<Account> accounts,int n)
+        public bool AccountIDCheck(List<Account> list, int n)
         {
-            accounts.CopyTo(array);
+            bool check = true; ;
+            try
+            {
+                check = list.Any(l => l.AccountID == n);
+            }
+            catch
+            {
+                check = false;
+            }
+            return check;
         }
+
+
     }
 }

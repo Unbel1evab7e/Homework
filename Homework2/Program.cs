@@ -8,11 +8,11 @@ namespace Homework2
         static void Main(string[] args)
         {
             List<Client> clients = new List<Client>();
-            Client client;
-            Account account;
+            Client client = new Client();
+            Account account=new Account();
             int clientid;
+            int accountid;
             int count = 0;
-            bool catchflag = true;
             bool flag = true;
             bool flagacc;
             string menuacc;
@@ -34,30 +34,16 @@ namespace Homework2
                         count++;
                         break;
                     case "2":
-                        if (clients.Count != 0)
+                            if (clients.Count != 0)
                         {
                             Console.WriteLine("Введите ClientId, который хотите удалить");
                             clientid = Convert.ToInt32(Console.ReadLine());
-                            try
+                            while (client.ClientIDCheck(clients, clientid) == false)
                             {
-                                clients.RemoveAt(clientid);
+                                Console.WriteLine("Вы ввели неверный ID клиента, пожалуйста введите снова");
+                                clientid = Convert.ToInt32(Console.ReadLine());
                             }
-                            catch
-                            {
-                                while (catchflag == true)
-                                {
-                                    try
-                                    {
-                                        Console.WriteLine("Введён неверный ClientID, повторите ввод");
-                                        clientid = Convert.ToInt32(Console.ReadLine());
-                                        clients.RemoveAt(clientid);
-                                        catchflag = false;
-                                    }
-                                    catch { }
-                                }
-                            }
-
-
+                            clients.RemoveAt(clientid);
                         }
                         else
                             Console.WriteLine("Список клиентов пуст");
@@ -75,42 +61,60 @@ namespace Homework2
                             flagacc = true;
                             Console.WriteLine("Введите ID клиента");
                             clientid = Convert.ToInt32(Console.ReadLine());
+                            while (client.ClientIDCheck(clients, clientid) == false)
+                            {
+                                Console.WriteLine("Вы ввели неверный ID клиента, пожалуйста введите снова");
+                                clientid = Convert.ToInt32(Console.ReadLine());
+                            }
                             client = clients[clientid];
                             while (flagacc == true)
-                            {
-                                Console.WriteLine("Добавить счёт(1)");
-                                Console.WriteLine("Удалить счёт(2)");
-                                Console.WriteLine("Изменение баланса(3)");
-                                Console.WriteLine("Посмотреть историю счёта(4)");
-                                Console.WriteLine("Показать все счета у клиента(5)");
-                                Console.WriteLine("Выйти(6)");
-                                menuacc = Console.ReadLine();
+                                {
+                                    Console.WriteLine("Добавить счёт(1)");
+                                    Console.WriteLine("Удалить счёт(2)");
+                                    Console.WriteLine("Изменение баланса(3)");
+                                    Console.WriteLine("Посмотреть историю счёта(4)");
+                                    Console.WriteLine("Показать все счета у клиента(5)");
+                                    Console.WriteLine("Выйти(6)");
+                                    menuacc = Console.ReadLine();
                                 switch (menuacc)
                                 {
                                     case "1":
                                         account = new Account();
-                                        account.CreateAccount(client.AccountID);
+                                        account.CreateAccount(client.CountAccountID);
                                         client.accounts.Add(account);
-                                        account.AccountIDCheck(client.accounts, client.AccountID);
-                                        client.AccountID++;
+                                        client.CountAccountID++;
                                         break;
                                     case "2":
                                         Console.WriteLine("Введите AccountId, который хотите удаллить");
-                                        int accountid = Convert.ToInt32(Console.ReadLine());
+                                        accountid = Convert.ToInt32(Console.ReadLine());
+                                        while (account.AccountIDCheck(client.accounts, accountid) == false)
+                                        {
+                                            Console.WriteLine("Вы ввели неверный ID клиента, пожалуйста введите снова");
+                                            accountid = Convert.ToInt32(Console.ReadLine());
+                                        }
                                         client.accounts.RemoveAt(accountid);
                                         break;
                                     case "3":
                                         Console.WriteLine("Введите AccountId счёта, с которым вы хотите работать");
                                         accountid = Convert.ToInt32(Console.ReadLine());
+                                        while (account.AccountIDCheck(client.accounts, accountid) == false)
+                                        {
+                                            Console.WriteLine("Вы ввели неверный ID клиента, пожалуйста введите снова");
+                                            accountid = Convert.ToInt32(Console.ReadLine());
+                                        }
                                         account = client.accounts[accountid];
                                         account.BalanceChange();
                                         break;
                                     case "4":
                                         Console.WriteLine("Введите AccountId счёта,историю которого вы хотите получить");
                                         accountid = Convert.ToInt32(Console.ReadLine());
-                                        //account = client.accounts[accountid];
-                                        //account.GetHistory();
-                                        account 
+                                        while (account.AccountIDCheck(client.accounts, accountid) == false)
+                                        {
+                                            Console.WriteLine("Вы ввели неверный ID клиента, пожалуйста введите снова");
+                                            accountid = Convert.ToInt32(Console.ReadLine());
+                                        }
+                                        account = client.accounts[accountid];
+                                        account.GetHistory();
                                         break;
                                     case "5":
                                         foreach (Account aAccount in client.accounts)
@@ -121,7 +125,7 @@ namespace Homework2
                                         flagacc = false;
                                         break;
                                 }
-                            }
+                            }                                                      
                         }
                         break;
                     case "5":

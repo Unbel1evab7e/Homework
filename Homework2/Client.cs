@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Text;
 
 namespace Homework2
@@ -8,7 +9,7 @@ namespace Homework2
     public class Client 
     {
         int _id;
-        int _accountid;
+        int _countaccountid;
         string _firstname;
         string _secondname;
         string _lastname;
@@ -56,27 +57,25 @@ namespace Homework2
                 _id = value;
             }
         }
-        public int AccountID 
+        public int CountAccountID 
         {
             get 
             {
-               return _accountid;
+               return _countaccountid;
             }
             set 
             {
-                _accountid = value;
+                _countaccountid = value;
             } 
         }
         public List<Account> accounts;
-
         public bool Equals(Client other)
         {
             return(ClientId.Equals(other.ClientId));
         }
         public override string ToString()
         {
-            return "ID: " + ClientId + "   Name: " + Firstname + "   SecondName: " + Secondname + "   LastName: " + Lastname;
-          
+            return "ID: " + ClientId + "   Name: " + Firstname + "   SecondName: " + Secondname + "   LastName: " + Lastname;          
         }
         public void CreateClient(int id)
         {
@@ -96,6 +95,20 @@ namespace Homework2
                 accounts = new List<Account>();
             }
         }
+        public  bool ClientIDCheck(List<Client> list, int n)
+        {
+            bool check = true; ;
+            try
+            {
+                check = list.Any(l => l.ClientId == n);
+            }
+            catch
+            {
+                check = false;
+            }
+            return check;
+        }
+
     }
 }
         
