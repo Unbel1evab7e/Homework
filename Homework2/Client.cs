@@ -95,12 +95,12 @@ namespace Homework2
                 accounts = new List<Account>();
             }
         }
-        public  bool ClientIDCheck(List<Client> list, int n)
+        public bool ClientIDCheck(List<Client> list, int n)
         {
             bool check = true; ;
             try
             {
-                check = list.Any(l => l.ClientId == n);
+
             }
             catch
             {

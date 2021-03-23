@@ -9,8 +9,11 @@ namespace Homework3
     {
         static void Main(string[] args)
         {
-            string url = "https://api.github.com/users/vinta/repos";
+            string url = "https://raw.githubusercontent.com/vinta/awesome-python/master/README.md";
             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+            WebHeaderCollection webHeaderCollection = httpWebRequest.Headers;
+            webHeaderCollection.Add("User-Agent","Unbel1evab7e");
+            webHeaderCollection.Add("Authorization", "c9678ec17fa61749c162edd7f9f31875b0a5d495");
             HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
             string response;
             using (StreamReader streamReader = new StreamReader(httpWebResponse.GetResponseStream()))
@@ -18,7 +21,7 @@ namespace Homework3
                 response = streamReader.ReadToEnd();
             }
             RepoResponse repoResponse = JsonConvert.DeserializeObject<RepoResponse>(response);
-            Console.WriteLine("Temprature in {0}:{1} C", repoResponse);
+            Console.WriteLine(repoResponse.Text);
             Console.ReadLine();
         }
     }

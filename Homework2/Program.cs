@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Homework2
 {
@@ -13,6 +14,7 @@ namespace Homework2
             int clientid;
             int accountid;
             int count = 0;
+            bool check=false;
             bool flag = true;
             bool flagacc;
             string menuacc;
@@ -38,12 +40,18 @@ namespace Homework2
                         {
                             Console.WriteLine("Введите ClientId, который хотите удалить");
                             clientid = Convert.ToInt32(Console.ReadLine());
-                            while (client.ClientIDCheck(clients, clientid) == false)
+                            do
                             {
-                                Console.WriteLine("Вы ввели неверный ID клиента, пожалуйста введите снова");
-                                clientid = Convert.ToInt32(Console.ReadLine());
-                            }
-                            clients.RemoveAt(clientid);
+                                try
+                                {
+                                    check = clients.Remove(clients[clientid]);
+                                }
+                                catch
+                                {
+                                    Console.WriteLine("Вы ввели неверный ID клиента, пожалуйста введите снова");
+                                    clientid = Convert.ToInt32(Console.ReadLine());
+                                }
+                            } while ((clients.Any(c => c.ClientId != clientid)) || check == false);
                         }
                         else
                             Console.WriteLine("Список клиентов пуст");
