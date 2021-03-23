@@ -9,14 +9,14 @@ namespace Homework2
         {
             List<Client> clients = new List<Client>();
             Client client = new Client();
-            Account account=new Account();
+            Account account = new Account();
             int clientid;
             int accountid;
             int count = 0;
             bool flag = true;
             bool flagacc;
             string menuacc;
-            while (flag==true)
+            while (flag == true)
             {
                 Console.WriteLine("Добавить клиента (1)");
                 Console.WriteLine("Удалить клиента (2)");
@@ -34,7 +34,7 @@ namespace Homework2
                         count++;
                         break;
                     case "2":
-                            if (clients.Count != 0)
+                        if (clients.Count != 0)
                         {
                             Console.WriteLine("Введите ClientId, который хотите удалить");
                             clientid = Convert.ToInt32(Console.ReadLine());
@@ -68,14 +68,14 @@ namespace Homework2
                             }
                             client = clients[clientid];
                             while (flagacc == true)
-                                {
-                                    Console.WriteLine("Добавить счёт(1)");
-                                    Console.WriteLine("Удалить счёт(2)");
-                                    Console.WriteLine("Изменение баланса(3)");
-                                    Console.WriteLine("Посмотреть историю счёта(4)");
-                                    Console.WriteLine("Показать все счета у клиента(5)");
-                                    Console.WriteLine("Выйти(6)");
-                                    menuacc = Console.ReadLine();
+                            {
+                                Console.WriteLine("Добавить счёт(1)");
+                                Console.WriteLine("Удалить счёт(2)");
+                                Console.WriteLine("Изменение баланса(3)");
+                                Console.WriteLine("Посмотреть историю счёта(4)");
+                                Console.WriteLine("Показать все счета у клиента(5)");
+                                Console.WriteLine("Выйти(6)");
+                                menuacc = Console.ReadLine();
                                 switch (menuacc)
                                 {
                                     case "1":
@@ -125,7 +125,7 @@ namespace Homework2
                                         flagacc = false;
                                         break;
                                 }
-                            }                                                      
+                            }
                         }
                         break;
                     case "5":
