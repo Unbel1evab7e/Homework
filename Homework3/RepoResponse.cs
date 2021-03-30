@@ -7,8 +7,6 @@ namespace Homework3
 {
     public class RepoResponse
     {
-       [JsonIgnore()]
-        public string Text { get; set; }
-
+        public int stargazers_count{ get; set; }
     }
 }
