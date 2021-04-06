@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace Codewars
 {
@@ -6,14 +7,9 @@ namespace Codewars
     {
         static void Main(string[] args)
         {
-            Program program = new Program();
-           string str = program.GetStr("This website is for losers LOL!");
+           
         }
-        public string GetStr(string str)
-        {
-            
-            return str;
-        }
+        
         
     }
 }
